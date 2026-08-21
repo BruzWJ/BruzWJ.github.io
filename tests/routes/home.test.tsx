@@ -196,12 +196,12 @@ describe("HomePage", () => {
 
     expect(
       container.querySelector(
-        "img[src='https://raw.githubusercontent.com/bwj2310/bwj2310/output/pacman-contribution-graph.svg']"
+        "img[src='https://raw.githubusercontent.com/bruzwj/bruzwj/output/pacman-contribution-graph.svg']"
       )
     ).toHaveClass("dark:hidden")
     expect(
       container.querySelector(
-        "img[src='https://raw.githubusercontent.com/bwj2310/bwj2310/output/pacman-contribution-graph-dark.svg']"
+        "img[src='https://raw.githubusercontent.com/bruzwj/bruzwj/output/pacman-contribution-graph-dark.svg']"
       )
     ).toHaveClass("hidden", "dark:block")
   })

@@ -1,4 +1,4 @@
-# BWJ2310 Portfolio
+# BruzWJ Portfolio
 
 Next.js portfolio shell for a project-first personal site.
 

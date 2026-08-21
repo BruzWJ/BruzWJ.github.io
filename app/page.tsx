@@ -69,7 +69,7 @@ const profileFacts = [
 const socialLinks = [
   {
     label: "GitHub",
-    href: "https://github.com/BWJ2310",
+    href: "https://github.com/BruzWJ",
     icon: GitHubBrandIcon,
   },
   { label: "X", href: "https://x.com/BruzWJ", icon: XBrandIcon },
