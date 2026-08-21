@@ -157,16 +157,7 @@ export default async function HomePage() {
         className="max-w-none p-0"
         paddingClassName="py-10 md:py-16"
       >
-        <div className="flex h-36 items-center overflow-x-auto border-b border-border bg-white p-3 [scrollbar-width:none] md:h-52 md:overflow-x-visible md:p-7 lg:h-64 dark:bg-[#0d1117] [&::-webkit-scrollbar]:hidden">
-          <Image
-            alt="Bruzzz portfolio header"
-            className="h-full w-auto max-w-none object-contain md:h-auto md:w-full"
-            height={184}
-            priority
-            src="https://pbs.twimg.com/profile_banners/737653347012878337/1785513347/1080x360"
-            unoptimized
-            width={1166}
-          />
+        <div className="flex h-36 items-center overflow-x-auto border-b border-border bg-[url(https://pbs.twimg.com/profile_banners/737653347012878337/1785513347/1080x360)] [scrollbar-width:none] md:h-52 md:overflow-x-visible md:p-7 lg:h-64 [&::-webkit-scrollbar]:hidden">
         </div>
         <div className="relative mx-auto grid max-w-3xl gap-8 px-4 pt-20 pb-7 sm:px-7 sm:pb-9 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end lg:gap-6">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 sm:left-7 sm:translate-x-0">
