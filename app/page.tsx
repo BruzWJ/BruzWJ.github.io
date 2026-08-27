@@ -124,10 +124,10 @@ const experience: ExperienceItem[] = [
 const homepageExperience = experience.slice(0, 3)
 
 const homepageProjectSlugs = [
+  "audio2face",
   "tradinggoose-studio",
   "airturn",
   "cs-pet-tech",
-  "robotics",
 ]
 
 const homepageProjectTitles: Record<string, string> = {

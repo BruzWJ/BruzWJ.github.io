@@ -10,6 +10,7 @@ import { PullQuote } from "./pull-quote"
 import { ResultStats } from "./result-stats"
 import { ToolStack } from "./tool-stack"
 import { WideImage } from "./wide-image"
+import { XEmbedScript } from "./x-embed-script"
 import type { ImageMetadata } from "@/lib/content/image-metadata"
 
 type AssetResolver = (src: string) => string
@@ -97,6 +98,7 @@ export function createMdxComponents(
         width: props.width ?? metadata?.width,
       })
     },
+    XEmbedScript,
   }
 }
 

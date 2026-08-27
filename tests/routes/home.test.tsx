@@ -84,14 +84,15 @@ describe("HomePage", () => {
         .getAllByRole("heading", { level: 3 })
         .map((heading) => heading.textContent)
     ).toEqual([
+      "Audio2Face",
       "TradingGoose-Studio",
       "AirTurn",
       "CS Pet Tech",
-      "Robotics",
     ])
     expect(work.queryByText("TradingGoose-Market")).not.toBeInTheDocument()
     expect(work.queryByText("Sox")).not.toBeInTheDocument()
     expect(work.queryByText("Art")).not.toBeInTheDocument()
+    expect(work.queryByText("Robotics")).not.toBeInTheDocument()
     expect(work.getAllByText("Open project")).toHaveLength(4)
     expect(
       work.getByRole("link", { name: /airturn[\s\S]*open project/i })
@@ -191,19 +192,15 @@ describe("HomePage", () => {
     )
   })
 
-  it("renders light and dark Pacman contribution graphs", async () => {
-    const { container } = render(await HomePage())
+  it("renders the GitHub activity graph", async () => {
+    render(await HomePage())
 
     expect(
-      container.querySelector(
-        "img[src='https://raw.githubusercontent.com/bruzwj/bruzwj/output/pacman-contribution-graph.svg']"
-      )
-    ).toHaveClass("dark:hidden")
-    expect(
-      container.querySelector(
-        "img[src='https://raw.githubusercontent.com/bruzwj/bruzwj/output/pacman-contribution-graph-dark.svg']"
-      )
-    ).toHaveClass("hidden", "dark:block")
+      screen.getByRole("img", { name: /github activity graph for bruzzz/i })
+    ).toHaveAttribute(
+      "src",
+      "https://github-readme-activity-graph.vercel.app/graph?username=BruzWJ&radius=16&theme=dracula&area=true&order=5&bg_color=00000000&color=888&title_color=888&line=888&point=888&area_color=888&hide_border=true&hide_title=true"
+    )
   })
 
   it("uses concrete tool logos in one continuous skills ticker", async () => {

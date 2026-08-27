@@ -1,0 +1,108 @@
+---
+title: "Audio2Face"
+description: "A Blender 5.2 extension that runs NVIDIA Audio2Face-3D and Audio2Emotion locally on GPU, driving Shape Keys from WAV or live audio."
+status: "Active"
+year: "2026-present"
+role: "Developer"
+team: "Personal Project"
+tools: ["Blender", "Python", "C++", "CUDA", "TensorRT", "NVIDIA Audio2Face"]
+cover: "./images/01-audio2face-cover.webp"
+featured: true
+headerVariant: "immersive"
+bodyWidth: "full"
+---
+
+<ProjectSection
+  eyebrow="Audio2Face"
+  title="Local NVIDIA Audio2Face inference inside Blender"
+  summary="A Blender 5.2 extension that runs Audio2Face-3D v3.0 and Audio2Emotion v3.0 on a local NVIDIA GPU and writes 52 ARKit coefficients onto existing Shape Keys."
+>
+  <ProjectSectionCopy>
+    Blender owns a packaged native worker. There is no hosted service, CUDA Toolkit install, TensorRT install, or extra executable to choose. After pointing Preferences at the two NVIDIA model repositories, Selected WAV playback or live PCM starts inference automatically and drives matching Shape Keys as frames arrive.
+
+    <ProjectLinks items='[{"label":"GitHub repo","href":"https://github.com/BruzWJ/Audio2Face-blender-addon","type":"github"},{"label":"WIP update on X","href":"https://x.com/BruzWJ/status/2092705368099176896","type":"website"}]' />
+  </ProjectSectionCopy>
+  <ProjectSectionMedia>
+    <blockquote className="twitter-tweet" data-media-max-width="560"><p lang="en" dir="ltr">Audio2Face Blender addon WIP update: <br /><br />added preferred emotion and auto emotion mixing with controls, will make a release soon 🫡<br /><br />Next: Blender shape key animation baking from audio <a href="https://t.co/NJ34RxfjOO">pic.twitter.com/NJ34RxfjOO</a></p>&mdash; BruzWJ (@BruzWJ) <a href="https://x.com/BruzWJ/status/2092705368099176896?ref_src=twsrc%5Etfw">August 26, 2026</a></blockquote>
+  </ProjectSectionMedia>
+</ProjectSection>
+
+<ProjectSection
+  eyebrow="2D character test"
+  title="Cartoon Shape Keys, same ARKit-52 stream"
+  summary="The worker never deforms Blender geometry directly. Matching Shape Key names are enough, so a stylized 2D character can ride the same audio-driven coefficients."
+>
+  <ProjectSectionCopy>
+    Miss Minutes was a check that the add-on is not locked to the Audio2Face reference head. The model still solves to 52 named ARKit channels; Blender only writes values onto keys that already exist. A cartoon rig with those names lip-syncs from the same WAV path as a realistic mesh.
+
+    <ProjectLinks items='[{"label":"2D character test on X","href":"https://x.com/BruzWJ/status/2092292670462824823","type":"website"}]' />
+  </ProjectSectionCopy>
+  <ProjectSectionMedia>
+    <blockquote className="twitter-tweet" data-media-max-width="560"><p lang="en" dir="ltr">This feels wrong but should i continue building Miss Minutes? 😭<br /><br />Audio2Face in <a href="https://x.com/Blender?ref_src=twsrc%5Etfw">@Blender</a> works surprisingly well on cartoon characters🤔 <a href="https://t.co/dgqUqlhvjm">pic.twitter.com/dgqUqlhvjm</a></p>&mdash; BruzWJ (@BruzWJ) <a href="https://x.com/BruzWJ/status/2092292670462824823?ref_src=twsrc%5Etfw">August 25, 2026</a></blockquote>
+  </ProjectSectionMedia>
+</ProjectSection>
+
+<ProjectSection
+  eyebrow="Emotion mixing"
+  title="Preferred emotion and auto emotion mixing"
+  summary="Saved Preferred Emotion sliders can drive the face directly, or mix into Audio2Emotion output. Mixed Emotion is the worker's read-only effective tensor."
+>
+  <ProjectSectionCopy>
+    Preferred Emotion is an authored, saved source. Load/Clear includes or removes it from the mix without copying values either way. Auto Audio2Emotion stays independent, so you can keep a preferred character while the generated mix still follows the audio. Control edits replace the active stream settings in place; playback, the worker, and loaded models stay up.
+  </ProjectSectionCopy>
+  <ProjectSectionMedia>
+    <MediaGrid variant="pair">
+      <WideImage
+        src="./images/03-preferred-emotion.webp"
+        alt="Audio2Face Preferred Emotion sliders with joy loaded while a WAV drives the face"
+        caption="Preferred Emotion sliders, with Load mixing the authored values into the live face."
+        width={1280}
+        height={720}
+        aspect="wide"
+        fit="contain"
+      />
+      <WideImage
+        src="./images/04-mixed-emotion.webp"
+        alt="Audio2Face Auto Audio2Emotion controls and read-only Mixed Emotion output"
+        caption="Auto Audio2Emotion tuning with read-only Mixed Emotion from the worker."
+        width={1280}
+        height={698}
+        aspect="wide"
+        fit="contain"
+      />
+    </MediaGrid>
+  </ProjectSectionMedia>
+</ProjectSection>
+
+<ProjectSection
+  eyebrow="Runtime"
+  title="Package-local GPU worker, Shape Key delivery"
+  summary="The extension ZIP carries the locked NVIDIA runtime. Only timestamped ARKit coefficients cross into Blender."
+  reverse
+>
+  <ProjectSectionCopy>
+    Start Worker launches the child process and loads both models. Play on a selected WAV, or the first live PCM chunk, is what starts inference. Each delivered frame writes exact model channel names onto Mesh, Curve, Surface, and Lattice Shape Keys; missing names are skipped, and the Blender mesh does not need Audio2Face topology.
+
+    <ResultStats items='[{"label":"Output","value":"ARKit-52"},{"label":"Runtime","value":"Local GPU"},{"label":"Host","value":"Blender 5.2"}]' />
+  </ProjectSectionCopy>
+  <ProjectSectionMedia>
+    <div className="space-y-5">
+      <MediaGrid>
+        <WideImage
+          src="./images/05-model-tuning.webp"
+          alt="Audio2Face model tuning sliders driving live Shape Keys on a head mesh"
+          caption="Model Tuning during Selected WAV playback, with live ARKit Shape Key values."
+          width={1280}
+          height={698}
+          aspect="wide"
+          fit="contain"
+          tone="feature"
+        />
+      </MediaGrid>
+      <ProcessTimeline steps='[{"title":"Install the platform ZIP","summary":"Drop the Windows or Linux extension into a local Blender User Default repository. The ZIP already contains the native worker."},{"title":"Select and optimize models","summary":"Point Preferences at the Audio2Face-3D and Audio2Emotion repository roots, then build GPU engines with Optimize Models."},{"title":"Target Shape Keys and start the worker","summary":"Add Mesh, Curve, Surface, or Lattice objects, then start the package-local worker so both models load once."},{"title":"Play audio and mix emotion","summary":"Selected WAV playback or live PCM starts inference. Preferred and auto emotion mix while Shape Keys update on the audio clock."}]' />
+      <ToolStack tools='["Blender 5.2", "Python", "C++", "CUDA", "TensorRT", "Audio2Face-3D v3.0", "Audio2Emotion v3.0"]' />
+    </div>
+  </ProjectSectionMedia>
+</ProjectSection>
+
+<XEmbedScript />

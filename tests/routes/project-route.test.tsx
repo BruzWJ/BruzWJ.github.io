@@ -28,6 +28,7 @@ describe("ProjectsPage", () => {
         .getAllByRole("heading", { level: 2 })
         .map((heading) => heading.textContent)
     ).toEqual([
+      "Audio2Face",
       "TradingGoose-Market",
       "TradingGoose-Studio",
       "AirTurn Product Design",
@@ -138,6 +139,33 @@ describe("ProjectsPage", () => {
         /tradinggoose-studio copilot workflow and custom indicator video demo/i
       )
     ).toBeInTheDocument()
+  })
+
+  it("renders the Audio2Face project with raw X embeds", async () => {
+    render(
+      await ProjectPage({
+        params: Promise.resolve({ slug: "audio2face" }),
+      })
+    )
+
+    expect(
+      screen.getByRole("heading", { level: 1, name: "Audio2Face" })
+    ).toBeInTheDocument()
+    expect(screen.getByRole("link", { name: /github repo/i })).toHaveAttribute(
+      "href",
+      "https://github.com/BruzWJ/Audio2Face-blender-addon"
+    )
+    expect(screen.getByRole("link", { name: /wip update on x/i })).toHaveAttribute(
+      "href",
+      "https://x.com/BruzWJ/status/2092705368099176896"
+    )
+    expect(
+      screen.getByRole("link", { name: /2d character test on x/i })
+    ).toHaveAttribute(
+      "href",
+      "https://x.com/BruzWJ/status/2092292670462824823"
+    )
+    expect(document.querySelectorAll("blockquote.twitter-tweet")).toHaveLength(2)
   })
 
   it("renders the project-only public shell", () => {

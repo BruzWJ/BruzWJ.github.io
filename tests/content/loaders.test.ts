@@ -5,7 +5,7 @@ import { getProjectSlugs } from "@/lib/content/loaders"
 describe("getProjectSlugs", () => {
   it("reads project folders from the canonical in-repo content directory", async () => {
     await expect(getProjectSlugs()).resolves.toEqual(
-      expect.arrayContaining(["art", "cs-pet-tech", "robotics", "sox"]),
+      expect.arrayContaining(["art", "audio2face", "cs-pet-tech", "robotics", "sox"]),
     )
   })
 
@@ -13,6 +13,7 @@ describe("getProjectSlugs", () => {
     await expect(getProjectSlugs()).resolves.toEqual(
       expect.arrayContaining([
         "airturn",
+        "audio2face",
         "tradinggoose-market",
         "tradinggoose-studio",
       ]),

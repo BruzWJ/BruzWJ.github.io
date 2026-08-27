@@ -7,6 +7,7 @@ import {
   Bot,
   BriefcaseBusiness,
   CalendarDays,
+  AudioLines,
   CircuitBoard,
   ClipboardList,
   FolderKanban,
@@ -31,6 +32,10 @@ const projectContext: Record<
     icon: LucideIcon
   }
 > = {
+  audio2face: {
+    track: "Blender extension",
+    icon: AudioLines,
+  },
   art: {
     track: "Personal hobby",
     icon: Palette,
